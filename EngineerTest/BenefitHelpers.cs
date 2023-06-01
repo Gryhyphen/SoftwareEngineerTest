@@ -39,10 +39,7 @@ static class BenefitHelpers
         return drug.Benefit + (HERBAL_TEA_BASE_INCREASE * 2);
     }
 
-    private static int GetNextBenefitValue_MagicPill(IDrug drug)
-    {
-        return drug.Benefit;
-    }
+    private static int GetNextBenefitValue_MagicPill(IDrug drug) => drug.Benefit;
 
     private static int GetNextBenefitValue_Fervex(IDrug drug) => drug switch
     {
@@ -52,5 +49,9 @@ static class BenefitHelpers
         _ => 0
     };
 
-    private static int GetNextBenefitValue_Dafalgan(IDrug drug) => drug.Benefit - (NORMAL_DRUG_DECREASE * 2);
+    private static int GetNextBenefitValue_Dafalgan(IDrug drug) => drug switch
+    {
+        { ExpiresIn: > 0 } => drug.Benefit - (NORMAL_DRUG_DECREASE * 2),
+        _ => drug.Benefit - (NORMAL_DRUG_DECREASE * 2 * 2)
+    };
 }
