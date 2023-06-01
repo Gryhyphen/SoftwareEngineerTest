@@ -2,6 +2,15 @@
 
 You are a new developer in the team, and your first job is to add a feature to an old existing piece of code.
 
+**Note from Liam**
+Cool things I've done
+- Added roslynator and stylecop analyzers to improve code quality across IDEs
+- Added comprehensive tests in xunit
+- Added continuous integration pipeline
+- Added xml documentation
+
+Spent about 4 hours on this on and off.
+
 ## System specifications
 
 Hi and welcome to the team. We are in the future, and MYP have extended its activities by opening a pharmacy. Your task is to add a new feature to our system so that we can begin distributing a new drug. 
