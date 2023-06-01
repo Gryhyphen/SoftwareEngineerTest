@@ -26,7 +26,11 @@ static class BenefitHelpers
         return value;
     }
 
-    private static int GetNextBenefitValue_NormalDrug(IDrug drug) => drug.Benefit - NORMAL_DRUG_DECREASE;
+    private static int GetNextBenefitValue_NormalDrug(IDrug drug) => drug switch
+    {
+        { ExpiresIn: > 0 } => drug.Benefit - NORMAL_DRUG_DECREASE,
+        _ => drug.Benefit - (NORMAL_DRUG_DECREASE * 2)
+    };
 
     private static int GetNextBenefitValue_HerbalTea(IDrug drug)
     {
