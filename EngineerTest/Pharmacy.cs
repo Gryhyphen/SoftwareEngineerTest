@@ -32,9 +32,7 @@ public class Pharmacy : IPharmacy
             var (benefit, expiresIn) = (BenefitHelpers.GetNextBenefitValue(drug), ExpiryHelpers.GetNextExpiresInValue(drug));
             drug.Benefit = benefit;
             drug.ExpiresIn = expiresIn;
-
         });
-
         return this._drugs;
     }
 }
