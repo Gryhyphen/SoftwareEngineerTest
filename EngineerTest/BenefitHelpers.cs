@@ -43,7 +43,7 @@ static class BenefitHelpers
 
     private static int GetNextBenefitValue_Fervex(IDrug drug) => drug switch
     {
-        { ExpiresIn: > 11 } => drug.Benefit + 1,
+        { ExpiresIn: > 10 } => drug.Benefit + 1,
         { ExpiresIn: > 5 } => drug.Benefit + 2,
         { ExpiresIn: > 0 } => drug.Benefit + 3,
         _ => 0

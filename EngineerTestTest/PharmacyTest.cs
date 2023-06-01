@@ -97,9 +97,9 @@ public class PharmacyTest
     public void TestFervexIncreasesBenefitBy1WhenExpirationDateGreaterThen10()
     {
         var pharmacy = new Pharmacy();
-        pharmacy.AddDrug("Fervex", 20, 20);
+        pharmacy.AddDrug("Fervex", 20, 11);
 
-        var expectedDrugs = new Drug[] { new Drug("Fervex", 19, 21) };
+        var expectedDrugs = new Drug[] { new Drug("Fervex", 19, 12) };
         Assert.Equal(expectedDrugs, pharmacy.UpdateBenefitValue());
     }
 
