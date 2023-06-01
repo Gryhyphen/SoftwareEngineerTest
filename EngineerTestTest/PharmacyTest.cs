@@ -44,7 +44,7 @@ public class PharmacyTest
         var pharmacy = new Pharmacy();
         pharmacy.AddDrug("Herbal Tea", 5, 3);
 
-        var expectedDrugs = new Drug[] { new Drug("Herbal Tea", 4, 5) };
+        var expectedDrugs = new Drug[] { new Drug("Herbal Tea", 4, 4) };
         Assert.Equal(expectedDrugs, pharmacy.UpdateBenefitValue());
     }
 
