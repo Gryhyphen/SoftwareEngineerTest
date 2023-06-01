@@ -13,7 +13,7 @@ static class BenefitHelpers
             { Name: "Herbal Tea" } => GetNextBenefitValue_HerbalTea(drug),
             { Name: "Magic Pill" } => GetNextBenefitValue_MagicPill(drug),
             { Name: "Fervex" } => GetNextBenefitValue_Fervex(drug),
-            { Name: "Dafalga" } => GetNextBenefitValue_Dafalgan(drug),
+            { Name: "Dafalgan" } => GetNextBenefitValue_Dafalgan(drug),
             _ => GetNextBenefitValue_NormalDrug(drug)
         };
         return ClipValueToRange(newBenefitValue);
