@@ -138,12 +138,23 @@ public class PharmacyTest
 
     // "Dafalgan" degrades in Benefit twice as fast as normal drugs.
     [Fact]
-    public void TestDafalganDegradesInBenefitTwiceAsFast()
+    public void TestDafalganDegradesInBenefitTwiceThatOfANormalDrugFast()
     {
         var pharmacy = new Pharmacy();
         pharmacy.AddDrug("Dafalgan", 5, 10);
 
         var expectedDrugs = new Drug[] { new Drug("Dafalgan", 4, 8) };
+        Assert.Equal(expectedDrugs, pharmacy.UpdateBenefitValue());
+    }
+
+    // "Dafalgan" should degrade 2x it's base degrading when past it's expiry date
+    [Fact]
+    public void TestDafalganDegradesInBenefitTwiceAsFastWhenExpired()
+    {
+        var pharmacy = new Pharmacy();
+        pharmacy.AddDrug("Dafalgan", -2, 10);
+
+        var expectedDrugs = new Drug[] { new Drug("Dafalgan", -3, 6) };
         Assert.Equal(expectedDrugs, pharmacy.UpdateBenefitValue());
     }
 }
