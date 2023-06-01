@@ -18,6 +18,8 @@ public class Drug : IDrug
     /// <param name="benefit">An integer which denotes how powerful the drug is.</param>
     public Drug(string name, int expiresIn, int benefit)
     {
+        if (benefit > 50) throw new ArgumentOutOfRangeException(nameof(benefit), benefit, "Cannot be above 50.");
+        if (benefit < 0) throw new ArgumentOutOfRangeException(nameof(benefit), benefit, "Cannot be negative");
         this.Name = name;
         this.ExpiresIn = expiresIn;
         this.Benefit = benefit;

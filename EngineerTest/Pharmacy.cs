@@ -26,80 +26,13 @@ public class Pharmacy : IPharmacy
     /// <inheritdoc/>
     public IEnumerable<IDrug> UpdateBenefitValue()
     {
-        for (var i = 0; i < this._drugs.Count; i++)
+        this._drugs.ForEach(drug =>
         {
-            if (
-                this._drugs[i].Name != "Herbal Tea" &&
-                this._drugs[i].Name != "Fervex")
-            {
-                if (this._drugs[i].Benefit > 0)
-                {
-                    if (this._drugs[i].Name != "Magic Pill")
-                    {
-                        this._drugs[i].Benefit--;
-                    }
-                }
-            }
-            else
-            {
-                if (this._drugs[i].Benefit < 50)
-                {
-                    this._drugs[i].Benefit++;
-                    if (this._drugs[i].Name == "Fervex")
-                    {
-                        if (this._drugs[i].ExpiresIn < 11)
-                        {
-                            if (this._drugs[i].Benefit < 50)
-                            {
-                                this._drugs[i].Benefit++;
-                            }
-                        }
-
-                        if (this._drugs[i].ExpiresIn < 6)
-                        {
-                            if (this._drugs[i].Benefit < 50)
-                            {
-                                this._drugs[i].Benefit++;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (this._drugs[i].Name != "Magic Pill")
-            {
-                this._drugs[i].ExpiresIn--;
-            }
-
-            if (this._drugs[i].ExpiresIn < 0)
-            {
-                if (this._drugs[i].Name != "Herbal Tea")
-                {
-                    if (this._drugs[i].Name != "Fervex")
-                    {
-                        if (this._drugs[i].Benefit > 0)
-                        {
-                            if (this._drugs[i].Name != "Magic Pill")
-                            {
-                                this._drugs[i].Benefit--;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this._drugs[i].Benefit -= this._drugs[i].Benefit;
-                    }
-                }
-                else
-                {
-                    if (this._drugs[i].Benefit < 50)
-                    {
-                        this._drugs[i].Benefit++;
-                    }
-                }
-            }
-        }
-
+            // Calculate values BEFORE mutating the drug
+            var (benefit, expiresIn) = (BenefitHelpers.GetNextBenefitValue(drug), ExpiryHelpers.GetNextExpiresInValue(drug));
+            drug.Benefit = benefit;
+            drug.ExpiresIn = expiresIn;
+        });
         return this._drugs;
     }
 }
