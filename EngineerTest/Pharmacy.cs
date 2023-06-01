@@ -28,8 +28,11 @@ public class Pharmacy : IPharmacy
     {
         this._drugs.ForEach(drug =>
         {
-            drug.ExpiresIn = ExpiryHelpers.GetNextExpiresInValue(drug);
-            drug.Benefit = BenefitHelpers.GetNextBenefitValue(drug);
+            // Calculate values BEFORE mutating the drug
+            var (benefit, expiresIn) = (BenefitHelpers.GetNextBenefitValue(drug), ExpiryHelpers.GetNextExpiresInValue(drug));
+            drug.Benefit = benefit;
+            drug.ExpiresIn = expiresIn;
+
         });
 
         return this._drugs;
