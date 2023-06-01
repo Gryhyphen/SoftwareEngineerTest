@@ -6,6 +6,7 @@ namespace EngineerTest;
 
 /// <summary>
 /// An interface for an instance of a drug.
+/// Do not break the public API as it is used by other pieces of the software.
 /// </summary>
 public interface IDrug
 {
