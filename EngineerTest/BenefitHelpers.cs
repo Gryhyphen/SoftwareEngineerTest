@@ -1,11 +1,25 @@
+// <copyright file="BenefitHelpers.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 namespace EngineerTest;
 
-static class BenefitHelpers
+/// <summary>
+/// A static class that uses a switch to discriminate the union of drugs and determine
+/// which benefit calculation applies.
+/// In a more complex system, this would probably need to be turned into a service that we DI in.
+/// </summary>
+public static class BenefitHelpers
 {
-    const int MAX_BENEFIT = 50;
-    const int MIN_BENEFIT = 0;
-    const int NORMAL_DRUG_DECREASE = 1;
+    private const int MAX_BENEFIT = 50;
+    private const int MIN_BENEFIT = 0;
+    private const int NORMAL_DRUG_DECREASE = 1;
 
+    /// <summary>
+    /// Calculates the next benefit value given the current values of a drug.
+    /// </summary>
+    /// <param name="drug">The current values of a drug.</param>
+    /// <returns>The next benefit value for a drug.</returns>
     public static int GetNextBenefitValue(IDrug drug)
     {
         var newBenefitValue = drug switch
